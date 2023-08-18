@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Searchbar from './Searchbar/Searchbar';
@@ -7,7 +6,6 @@ import Button from './Button/Button';
 import MyLoader from './Loader/MyLoader';
 import Modal from './Modal/Modal';
 import axios from 'axios';
-
 
 const API_KEY = '37990722-3d7325777fa7dcec3ffe4a675';
 
@@ -19,6 +17,12 @@ const AppContainer = styled.div`
   background-color: #f0f0f0;
 `;
 
+const SearchContainer = styled.div`
+  width: 100%;
+  background-color: purple;
+  padding: 10px 0;
+`;
+
 const ContentContainer = styled.div`
   width: 100%;
   max-width: 1200px;
@@ -27,6 +31,23 @@ const ContentContainer = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+const LoadMoreButton = styled.button`
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+const ImageGalleryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 `;
 
 const App = () => {
@@ -79,39 +100,22 @@ const App = () => {
   return (
     <div>
       <AppContainer>
-      <ContentContainer>
-        <Searchbar onSubmit={handleSearchSubmit} />
-        <ImageGallery images={images} onImageClick={openModal} />
-        {isLoading && <MyLoader />}
-        {images.length > 0 && !isLoading && (
-          <Button onClick={loadMoreImages} />
-        )}
-        {modalImage && (
-          <Modal image={modalImage} onClose={closeModal} />
-        )}
-      </ContentContainer>
-    </AppContainer>
+        <SearchContainer>
+          <Searchbar onSubmit={handleSearchSubmit} />
+        </SearchContainer>
+        <ContentContainer>
+          <ImageGalleryContainer>
+            <ImageGallery images={images} onImageClick={openModal} />
+          </ImageGalleryContainer>
+          {isLoading && <MyLoader />}
+          {images.length > 0 && !isLoading && (
+            <LoadMoreButton onClick={loadMoreImages}>Load more</LoadMoreButton>
+          )}
+          {modalImage && <Modal image={modalImage} onClose={closeModal} />}
+        </ContentContainer>
+      </AppContainer>
     </div>
   );
 };
 
 export default App;
-
-
-
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div>
-//   );
-// };
