@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { IoSearch } from 'react-icons/io5'; // Правильний імпорт іконки
+import IoSearch from 'react-icons/io5'; // Правильний імпорт іконки
 
 const SearchContainer = styled.header`
   display: flex;
