@@ -17,15 +17,9 @@ const AppContainer = styled.div`
   background-color: #f0f0f0;
 `;
 
-const SearchContainer = styled.div`
-  width: 100%;
-  background-color: purple;
-  padding: 10px 0;
-`;
-
 const ContentContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   padding: 20px;
   margin: 0 auto;
   background-color: #ffffff;
@@ -42,12 +36,6 @@ const LoadMoreButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-`;
-
-const ImageGalleryContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
 `;
 
 const App = () => {
@@ -85,7 +73,7 @@ const App = () => {
     setPage(1);
   };
 
-  const loadMoreImages = () => {
+  const loadMoreImages = async () => {
     setPage(prevPage => prevPage + 1);
   };
 
@@ -100,15 +88,11 @@ const App = () => {
   return (
     <div>
       <AppContainer>
-        <SearchContainer>
-          <Searchbar onSubmit={handleSearchSubmit} />
-        </SearchContainer>
+        <Searchbar onSubmit={handleSearchSubmit} />
         <ContentContainer>
-          <ImageGalleryContainer>
-            <ImageGallery images={images} onImageClick={openModal} />
-          </ImageGalleryContainer>
+          <ImageGallery images={images} onImageClick={openModal} />
           {isLoading && <MyLoader />}
-          {images.length > 0 && !isLoading && (
+          {!isLoading && images.length > 0 && (
             <LoadMoreButton onClick={loadMoreImages}>Load more</LoadMoreButton>
           )}
           {modalImage && <Modal image={modalImage} onClose={closeModal} />}

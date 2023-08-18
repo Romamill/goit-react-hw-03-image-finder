@@ -1,14 +1,24 @@
-
 import PropTypes from 'prop-types';
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import styled from 'styled-components';
 
-const ImageGallery = ({ images }) => {
+const ImageGalleryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+`;
+
+const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <ul className="gallery">
+    <ImageGalleryContainer>
       {images.map(image => (
-        <ImageGalleryItem key={image.id} image={image} />
+        <img
+          key={image.id}
+          src={image.webformatURL}
+          alt=""
+          onClick={() => onImageClick(image)}
+        />
       ))}
-    </ul>
+    </ImageGalleryContainer>
   );
 };
 
@@ -20,6 +30,7 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onImageClick: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;

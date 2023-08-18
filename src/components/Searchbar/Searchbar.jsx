@@ -1,74 +1,60 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import IoSearch from 'react-icons/io5'; // Правильний імпорт іконки
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const SearchContainer = styled.header`
+const SearchContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-`;
-
-const SearchForm = styled.form`
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: purple;
+  padding: 10px;
+  width: 100%;
 `;
 
 const SearchInput = styled.input`
+  flex: 1;
+  padding: 8px;
   border: none;
   outline: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  width: 300px;
 `;
 
-const SearchButton = styled.button`
-  background-color: transparent;
-  border: none;
-  outline: none;
+const SearchIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SearchIcon = styled(IoSearch)`
-  font-size: 20px;
+  color: white;
+  margin-right: 8px;
 `;
 
 const Searchbar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleInputChange = event => {
+    setQuery(event.target.value);
+  };
+
+  const handleIconClick = () => {
+    onSubmit(query);
+  };
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
     onSubmit(query);
   };
 
   return (
     <SearchContainer>
-      <SearchForm onSubmit={handleSubmit}>
+      <SearchIcon icon={faSearch} onClick={handleIconClick} />
+      <form onSubmit={handleFormSubmit}>
         <SearchInput
           type="text"
-          placeholder="Search images and photos"
+          name="query"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={handleInputChange}
+          placeholder="Пошук зображень..."
         />
-        <SearchButton type="submit">
-          <SearchIcon />
-        </SearchButton>
-      </SearchForm>
+      </form>
     </SearchContainer>
   );
-};
-
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Searchbar;
