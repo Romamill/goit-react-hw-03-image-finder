@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import Button from './Button/Button';
 import MyLoader from './Loader/MyLoader';
 import Modal from './Modal/Modal';
 import axios from 'axios';

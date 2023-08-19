@@ -8,15 +8,16 @@ const SearchContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: purple;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
 `;
 
 const SearchInput = styled.input`
   flex: 1;
-  padding: 8px;
+  padding: 16px;
   border: none;
   outline: none;
+  width: 800px;
 `;
 
 const SearchIcon = styled(FontAwesomeIcon)`

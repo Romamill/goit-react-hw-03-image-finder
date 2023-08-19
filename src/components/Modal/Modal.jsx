@@ -16,6 +16,7 @@ const ModalOverlay = styled.div`
 
 const ModalContent = styled.div`
   background-color: #fff;
+  border: none;
 `;
 
 const ModalImage = styled.img`
