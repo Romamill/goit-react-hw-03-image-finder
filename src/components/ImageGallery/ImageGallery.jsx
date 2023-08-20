@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const ImageGalleryContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 20px;
-`;
+import './image-gallery-styled.scss';
 
 const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <ImageGalleryContainer>
+    <div className='image-gallery-container'>
       {images.map(image => (
         <img
           key={image.id}
@@ -18,7 +12,7 @@ const ImageGallery = ({ images, onImageClick }) => {
           onClick={() => onImageClick(image)}
         />
       ))}
-    </ImageGalleryContainer>
+    </div>
   );
 };
 
