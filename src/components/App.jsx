@@ -84,7 +84,7 @@ class App extends Component {
   };
 
   render() {
-    const { query, images, isLoading, modalImage, hasMoreImages } = this.state;
+    const { images, isLoading, modalImage } = this.state;
 
     return (
       <div>
